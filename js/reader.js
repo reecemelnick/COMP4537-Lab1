@@ -8,12 +8,14 @@ class NoteViewer {
         setInterval(this.getNotesFromLocal.bind(this), 2000);
     }
 
+    // clears notes section. Retrieves updated notes from local storage
     getNotesFromLocal() {
         document.getElementById("notes").innerHTML = "";
         let notes = JSON.parse(localStorage.getItem("notes") || "[]");
         this.generateNotes(notes);
     }
 
+    // for each note in local storage a new note is made. Notes are displayed.
     generateNotes(notes) {
         for(let i = 0; i < notes.length; ++i) {
             let newNote = new Note(i);
@@ -30,6 +32,7 @@ class NoteViewer {
         }
     }
 
+    // date object is made and put into timestamp div
     postTime() {
         const d = new Date();
         document.getElementById("timestamp").innerHTML =  userMessages.updateTime + d.toLocaleTimeString();
